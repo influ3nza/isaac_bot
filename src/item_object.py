@@ -1,7 +1,6 @@
 import json
 
-from .global_def import all_items, all_items_loaded
-from .global_def import ITEM_JSON_PATH
+from . import global_def
 
 class Item:
     def __init__(self, id: int, name: str, aliases: list[str], description: str, labels_id: list[int], label_name: list[str], rarity: str, charge: str):
@@ -25,41 +24,41 @@ def load_items_from_json(file_path: str) -> dict:
         items[key] = item
     return items
 
+
 def load_items():
-    global all_items, all_items_loaded
-    if all_items_loaded == True:
+    if global_def.all_items_loaded:
         return
 
-    all_items = load_items_from_json(ITEM_JSON_PATH)
-    all_items_loaded = True
+    global_def.all_items = load_items_from_json(global_def.ITEM_JSON_PATH)
+    global_def.all_items_loaded = True
+
 
 def find_item_by_id(item_id: int) -> Item:
-    global all_items
     load_items()
 
-    return all_items.get(str(item_id), None)
+    return global_def.all_items.get(str(item_id), None)
+
 
 def find_items_by_name(search_string: str) -> list:
-    global all_items
     load_items()
 
     matched_items = []
-    for item in all_items.values():
+    for item in global_def.all_items.values():
         if search_string in item.name and not item in matched_items:
             matched_items.append(item)
 
-    for item in all_items.values():
+    for item in global_def.all_items.values():
         for alias in item.aliases:
             if search_string in alias and not item in matched_items:
                 matched_items.append(item)
     return matched_items
 
+
 def find_items_by_name_strict(search_string: str) -> list:
-    global all_items
     load_items()
 
     matched_items = []
-    for item in all_items.values():
+    for item in global_def.all_items.values():
         if len(item.name) > 2:
             if len(search_string) > 2 and search_string in item.name and not item in matched_items:
                 matched_items.append(item)
@@ -67,7 +66,7 @@ def find_items_by_name_strict(search_string: str) -> list:
             if search_string in item.name and not item in matched_items:
                 matched_items.append(item)
     
-    for item in all_items.values():
+    for item in global_def.all_items.values():
         if search_string in item.aliases and not item in matched_items:
             matched_items.append(item)
     return matched_items

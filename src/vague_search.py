@@ -1,11 +1,12 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
+import random
 
-from .global_def import FONT_PATH, VAGUE_SEARCH_RES_PATH
+from . import global_def
 
 def create_image_with_list(item_list):
     font_size = 20
-    font_path = FONT_PATH
+    font_path = global_def.FONT_PATH
     font = ImageFont.truetype(font_path, font_size)
 
     image_width = 400
@@ -39,4 +40,19 @@ def create_image_with_list(item_list):
         text_name_x_position = text_x_position + (text_bbox[2] - text_bbox[0]) + text_text_distance
         draw.text((text_name_x_position, text_y_position), text_name, font=font, fill="black")
 
-    result_image.save(VAGUE_SEARCH_RES_PATH)
+    result_image.save(global_def.VAGUE_SEARCH_RES_PATH)
+
+
+def create_error_item_image():
+    # 选择道具个数 2-4
+    cover_num = random.randint(2, 4)
+
+    # 选择道具
+    mix_items = []
+    for i in range(cover_num):
+        select = random.randint(1, 733)
+        while select in mix_items or select in global_def.missing_item_number:
+            select = random.randint(1, 733)
+
+    # 打开图片
+    

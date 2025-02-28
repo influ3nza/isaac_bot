@@ -1,11 +1,15 @@
 from nonebot import on_command
 from nonebot.params import CommandArg
-from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot, Message, MessageSegment
+from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot, Message, MessageSegment, Event
+from .. import group_management
 
 send_help = on_command("help", aliases={"帮助"})
 
 @send_help.handle()
-async def handle_help():
+async def handle_help(event: Event):
+    if not group_management.accept_group_barrier(str(event.group_id)):
+        return
+    
     msg = "指令：-1|减1|减一|负1|负一|d-1\n参数：<id>/<道具名>\n作用：显示本道具5次D-1的结果\n\n"
     msg += "指令：+1|到|加一|加1\n参数：<id>/<道具名>\n作用：显示5次D-1可以达到本道具的结果\n\n"
     msg += "指令：item|c\n参数：<id>/<道具名>\n作用：搜索道具，支持字串模糊查找\n\n"
