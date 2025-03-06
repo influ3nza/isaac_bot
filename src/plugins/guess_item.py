@@ -1,6 +1,5 @@
 from nonebot import on_command
 from nonebot import on_message
-from nonebot.params import CommandArg
 from nonebot import logger
 from nonebot.adapters.onebot.v11 import Bot, Event, Message, MessageSegment
 import os
@@ -12,34 +11,46 @@ from .. import item_object
 from .. import label_object
 from .. import global_def
 from .. import group_management
+from .. import adj_item
 
 from ..label_object import Label
 
 guess_item = on_command("guess", aliases={"g", "猜", "猜道具"})
+guess_sprite = on_command("gs", aliases={"猜图片"})
 make_guess = on_message()
-game_start = -1
-timeout_task = None
-label_list = []
-hints = 7
 
-def clear_game_status(group_id: str):
-    global hints, label_list, game_start
+def clear_game_status(group_id: str) -> dict:
+    if group_management.group_guess_game.get(group_id) != None and group_management.group_guess_game[group_id]["timeout_task"]:
+        group_management.group_guess_game[group_id]["timeout_task"].cancel()
 
-    hints = 7
-    label_list.clear()
-    game_start = -1
+    group_management.group_guess_game[group_id] = {
+        "game_start": -1,
+        "hints": 7,
+        "label_list": [],
+        "timeout_task": None
+    }
+
+    return group_management.group_guess_game[group_id]
 
 
-async def game_timeout(bot: Bot, group_id: str):
+async def guess_game_timeout(bot: Bot, group_id: str):
     if not group_management.accept_group_barrier(str(group_id)):
         return
     
-    global hints, label_list, game_start
+    status = group_management.group_guess_game.get(str(group_id))
+    if status == None:
+        await bot.send_msg(group_id=group_id, message="不存在该群组的游戏记录，请联系管理员。")
+        return
+    
+    logger.info("status: " + str(status))
+    
+    game_start = status["game_start"]
+    label_list = []
+    hints = status["hints"]
 
     # 组装label列表
     try:
         item = item_object.find_item_by_id(game_start)
-        logger.info(item.labels_id)
         for label_id in item.labels_id:
             label = label_object.find_label_by_id(str(label_id))
             if label:
@@ -62,7 +73,6 @@ async def game_timeout(bot: Bot, group_id: str):
         rand_len = random.randint(2, 3)
         if (len(des) < 3):
             rand_len = len(des)
-
         rand_start = random.randint(0, len(des)-rand_len)
         label_list.append(Label(1003, "附加描述", f"这个道具的附加描述的一部分为\"{des[rand_start : rand_start+rand_len]}\"。"))
         logger.info(label_list)
@@ -79,7 +89,7 @@ async def game_timeout(bot: Bot, group_id: str):
             now_send = random.randint(0, len(label_list)-1)
         
         sent_list.append(label_list[now_send].id)
-        msg += MessageSegment.text("1." + label_list[now_send].description + "\n\n")
+        msg += MessageSegment.text("1." + label_list[now_send].description + "\n")
         await bot.send_msg(group_id=group_id, message=msg)
         await asyncio.sleep(5)
 
@@ -93,16 +103,16 @@ async def game_timeout(bot: Bot, group_id: str):
                 now_send = random.randint(0, len(label_list)-1)
             
             sent_list.append(label_list[now_send].id)
-            msg += MessageSegment.text(str(i+2) + "." + label_list[now_send].description + "\n\n")
+            msg += MessageSegment.text("\n" + str(i+2) + "." + label_list[now_send].description + "\n")
             
             await bot.send_msg(group_id=group_id, message=msg)
             await asyncio.sleep(15)
 
-        if game_start != -1:
+        if status["game_start"] != -1:
             end_msg = Message()
             end_msg += MessageSegment.text("时间到！游戏结束！正确答案是")
-            end_msg += MessageSegment.image(Path(f"/root/bot/isaac/tools/item_sprite/item_sprite_{game_start}.png"))
-            end_msg += MessageSegment.text(item_object.find_item_by_id(game_start).name)
+            end_msg += MessageSegment.image(Path(f"/root/bot/isaac/tools/item_sprite/item_sprite_{status['game_start']}.png"))
+            end_msg += MessageSegment.text(item_object.find_item_by_id(status["game_start"]).name)
 
             clear_game_status(str(group_id))
             await bot.send_msg(group_id=group_id, message=end_msg)
@@ -112,53 +122,132 @@ async def game_timeout(bot: Bot, group_id: str):
         await bot.send_msg(group_id=group_id, message=f"游戏出错：{str(e)}")
 
 
-@guess_item.handle()
-async def handle_guess_item(bot: Bot, event: Event):
-    if not group_management.accept_group_barrier(str(event.group_id)):
+async def sprite_game_timeout(bot: Bot, group_id: str):
+    if not group_management.accept_group_barrier(str(group_id)):
         return
     
-    # if not group_management.test_barrier(str(event.group_id)):
+    status = group_management.group_guess_game.get(str(group_id))
+    if status == None:
+        await bot.send_msg(group_id=group_id, message="不存在该群组的游戏记录，请联系管理员。")
+        return
+    
+    game_start = status["game_start"]
+    adj_item.create_blurred_sprite(game_start)
+    msg = Message()
+    msg += MessageSegment.text("这是什么道具？")
+    msg += MessageSegment.image(Path(global_def.SPRITE_GUESS_PATH))
+    await bot.send_msg(group_id=group_id, message=msg)
+
+    await asyncio.sleep(25)
+
+    status = group_management.group_guess_game.get(str(group_id))
+    game_start = status["game_start"]
+    if game_start != -1:
+        end_msg = Message()
+        end_msg += MessageSegment.text("时间到！游戏结束！正确答案是")
+        end_msg += MessageSegment.image(Path(f"/root/bot/isaac/tools/item_sprite/item_sprite_{game_start}.png"))
+        end_msg += MessageSegment.text(item_object.find_item_by_id(game_start).name)
+
+        clear_game_status(str(group_id))
+        await bot.send_msg(group_id=group_id, message=end_msg)
+
+
+@guess_item.handle()
+async def handle_guess_item(bot: Bot, event: Event):
+    group_id = event.group_id
+    if not group_management.accept_group_barrier(str(group_id)):
+        return
+    
+    # if not group_management.test_barrier(str(group_id)):
     #     msg = Message()
     #     msg += MessageSegment.text("还在修。")
     #     msg += MessageSegment.image(Path(global_def.UNDER_CONSTRUCTION_HINT_PATH))
-    #     await bot.send_msg(group_id=event.group_id, message=msg)
+    #     await bot.send_msg(group_id=group_id, message=msg)
     #     return
 
-    global game_start, timeout_task, hints
-    if game_start != -1:
+    status = group_management.group_guess_game.get(str(group_id))
+    if status == None:
+        status = clear_game_status(str(group_id))
+
+    if status["game_start"] != -1:
         await guess_item.finish(Message("此轮游戏还未结束！"))
         return
 
-    clear_game_status(str(event.group_id))
+    status = clear_game_status(str(group_id))
 
     game_start = random.randint(1, 732)
     while (game_start in global_def.missing_item_number):
         game_start = random.randint(1, 732)
+    status["game_start"] = game_start
 
     word = event.get_message().extract_plain_text().strip()
     if word.isdigit() and int(word) > 5:
-        hints = int(word)
+        status["hints"] = int(word)
 
-    timeout_task = asyncio.create_task(game_timeout(bot, event.group_id))
+    status["timeout_task"] = asyncio.create_task(guess_game_timeout(bot, group_id))
+
+    status = group_management.group_guess_game.get(str(group_id))
+    logger.info("should new: " + str(status))
     await guess_item.finish(Message(f"以撒点子王！每隔一段时间就会放出该物品的一个提示。如果道具名长度大于2，除非回答准确绰号，否则只匹配至少长度为3的子串。\n发送quit停止。"))
+
+
+@guess_sprite.handle()
+async def handle_guess_sprite(bot: Bot, event: Event):
+    group_id = event.group_id
+    if not group_management.accept_group_barrier(str(group_id)):
+        return
+
+    status = group_management.group_guess_game.get(str(group_id))
+    logger.info("sprite status:" + str(status))
+    if status == None:
+        status = clear_game_status(str(group_id))
+
+    if status["game_start"] != -1:
+        await guess_sprite.finish(Message("此轮游戏还未结束！"))
+        return
+    
+    # if not group_management.test_barrier(str(group_id)):
+    #     msg = Message()
+    #     msg += MessageSegment.text("还在修。")
+    #     msg += MessageSegment.image(Path(global_def.UNDER_CONSTRUCTION_HINT_PATH))
+    #     await bot.send_msg(group_id=group_id, message=msg)
+    #     return
+
+    status = clear_game_status(str(group_id))
+
+    game_start = random.randint(1, 732)
+    while (game_start in global_def.missing_item_number):
+        game_start = random.randint(1, 732)
+    status["game_start"] = game_start
+
+    status["timeout_task"] = asyncio.create_task(sprite_game_timeout(bot, group_id))
+    await guess_sprite.finish(Message(f"根据道具图片猜测是什么道具。图片可能被横置或倒转。\n发送quit停止。"))
 
 
 @make_guess.handle()
 async def handle_make_guess(bot: Bot, event: Event):
-    if not group_management.accept_group_barrier(str(event.group_id)):
+    group_id = event.group_id
+    if not group_management.accept_group_barrier(str(group_id)):
         return
     
-    global game_start
+    if event.user_id == event.self_id:
+        return
+    
+    status = group_management.group_guess_game.get(str(group_id))
+    if status == None:
+        return
+    
+    game_start = status["game_start"]
     if game_start == -1:
         return
     
-    # if not group_management.test_barrier(str(event.group_id)):
+    # if not group_management.test_barrier(str(group_id)):
     #     msg = Message()
     #     msg += MessageSegment.text("还在修。")
     #     msg += MessageSegment.image(Path(global_def.UNDER_CONSTRUCTION_HINT_PATH))
-    #     await bot.send_msg(group_id=event.group_id, message=msg)
+    #     await bot.send_msg(group_id=group_id, message=msg)
     #     return
-
+    
     word = event.get_message().extract_plain_text().strip()
     if len(word) == 0:
         return
@@ -168,7 +257,7 @@ async def handle_make_guess(bot: Bot, event: Event):
     if word.isdigit() and int(word) == game_start:
         msg += MessageSegment.text("猜测正确！正确答案是")
 
-    elif game_start in [item.id for item in item_object.find_items_by_name(word)]:
+    elif game_start in [item.id for item in item_object.find_items_by_name_strict(word)]:
         msg += MessageSegment.text("猜测正确！正确答案是")
 
     elif word == "quit":
@@ -180,9 +269,9 @@ async def handle_make_guess(bot: Bot, event: Event):
     msg += MessageSegment.image(Path(f"/root/bot/isaac/tools/item_sprite/item_sprite_{game_start}.png"))
     msg += MessageSegment.text(item_object.find_item_by_id(game_start).name)
     
-    if timeout_task:
-        timeout_task.cancel()
+    if status["timeout_task"]:
+        status["timeout_task"].cancel()
     
-    clear_game_status(str(event.group_id))
+    clear_game_status(str(group_id))
     await make_guess.finish(msg)
     return

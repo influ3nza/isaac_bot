@@ -2,6 +2,7 @@ from nonebot import on_notice
 from nonebot import logger
 from nonebot.adapters.onebot.v11 import Bot, NoticeEvent, Message, MessageSegment
 import random
+from pathlib import Path
 
 from .. import group_management
 from .. import global_def
@@ -13,6 +14,13 @@ send_prophesy = on_notice()
 async def handle_send_prophesy(bot: Bot, event: NoticeEvent):
     if not group_management.accept_group_barrier(str(event.group_id)):
         return
+    
+    # if not group_management.test_barrier(str(event.group_id)):
+    #     msg = Message()
+    #     msg += MessageSegment.text("还在修。")
+    #     msg += MessageSegment.image(Path(global_def.UNDER_CONSTRUCTION_HINT_PATH))
+    #     await bot.send_msg(group_id=event.group_id, message=msg)
+    #     return
     
     if not event.target_id == event.self_id:
         return

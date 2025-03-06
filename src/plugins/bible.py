@@ -18,6 +18,9 @@ async def handle_bible(bot: Bot, event: Event):
     if not group_management.accept_group_barrier(str(group_id)):
         return
     
+    if event.user_id == event.self_id:
+        return
+    
     word = event.get_message().extract_plain_text().strip()
 
     if word == "/bible":

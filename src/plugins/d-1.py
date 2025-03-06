@@ -8,13 +8,14 @@ from pathlib import Path
 from ..item_object import Item, load_items_from_json, find_item_by_id, find_items_by_name
 from ..vague_search import create_image_with_list
 from ..adj_item import generate_image_sequence_down, create_concatenated_image
-from ..global_def import VAGUE_SEARCH_RES_PATH, D_1_RES_PATH
+from .. import global_def
 from .. import group_management
 
 D_1 = on_command("-1", aliases={"d-1", "减1", "负1", "减一", "负一"})
 
 @D_1.handle()
 async def handle_d_1(event: Event, args: Message = CommandArg()):
+    group_id = event.group_id
     if not group_management.accept_group_barrier(str(event.group_id)):
         return
     
@@ -35,9 +36,9 @@ async def handle_d_1(event: Event, args: Message = CommandArg()):
         item = similar_list[0]
         id_sequence = generate_image_sequence_down(item.id)
 
-        create_concatenated_image(id_sequence, D_1_RES_PATH)
-        await D_1.finish(MessageSegment.image(Path(D_1_RES_PATH)))
+        create_concatenated_image(id_sequence, global_def.D_1_RES_PATH)
+        await D_1.finish(MessageSegment.image(Path(global_def.D_1_RES_PATH)))
         return
 
     create_image_with_list(similar_list)
-    await D_1.finish(MessageSegment.image(Path(VAGUE_SEARCH_RES_PATH)))
+    await D_1.finish(MessageSegment.image(Path(global_def.VAGUE_SEARCH_RES_PATH_PREFIX + str(group_id) + global_def.PNG_SUFFIX)))

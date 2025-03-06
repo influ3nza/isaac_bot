@@ -1,4 +1,5 @@
 import json
+from nonebot import logger
 
 from . import global_def
 
@@ -70,3 +71,52 @@ def find_items_by_name_strict(search_string: str) -> list:
         if search_string in item.aliases and not item in matched_items:
             matched_items.append(item)
     return matched_items
+
+
+class Trinket:
+    def __init__(self, id: int, name: str, description: str, aliases: list[str]):
+        self.id = id
+        self.name = name
+        self.description = description
+        self.aliases = aliases
+
+
+def load_trinkets_from_json(file_path: str) -> dict:
+    with open(file_path, 'r', encoding='utf-8') as file:
+        json_data = json.load(file)
+
+    trinkets = {}
+    for key, value in json_data.items():
+        trinket = Trinket(id=value["id"], name=value["name"], description = value["description"], aliases=value["aliases"])
+        trinkets[key] = trinket
+
+    return trinkets
+
+
+def load_trinkets():
+    if global_def.all_trinkets_loaded:
+        return
+
+    global_def.all_trinkets = load_trinkets_from_json(global_def.TRINKET_JSON_PATH)
+    global_def.all_trinkets_loaded = True
+
+
+def find_trinket_by_id(trinket_id: int) -> Trinket:
+    load_trinkets()
+
+    return global_def.all_trinkets.get(str(trinket_id), None)
+
+
+def find_trinkets_by_name(search_string: str) -> list:
+    load_trinkets()
+
+    matched_trinkets = []
+    for trinket in global_def.all_trinkets.values():
+        if search_string in trinket.name and not trinket in matched_trinkets:
+            matched_trinkets.append(trinket)
+
+    for trinket in global_def.all_trinkets.values():
+        for alias in trinket.aliases:
+            if search_string in alias and not trinket in matched_trinkets:
+                matched_trinkets.append(trinket)
+    return matched_trinkets

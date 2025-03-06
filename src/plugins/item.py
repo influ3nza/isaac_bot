@@ -4,16 +4,19 @@ from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot, Message, Message
 import os
 from pathlib import Path
 
-from ..item_object import Item, load_items_from_json, find_item_by_id, find_items_by_name
-from ..vague_search import create_image_with_list
-from ..global_def import VAGUE_SEARCH_RES_PATH
+from ..item_object import Item, Trinket
+from .. import item_object
+from .. import vague_search
+from .. import global_def
 from .. import group_management
 
 isaac_item = on_command("item", aliases={"c"})
+isaac_trinket = on_command("trinket", aliases={"t"})
 
 @isaac_item.handle()
 async def handle_isaac_item(event: Event, args: Message = CommandArg()):
-    if not group_management.accept_group_barrier(str(event.group_id)):
+    group_id = event.group_id
+    if not group_management.accept_group_barrier(str(group_id)):
         return
     
     word = args.extract_plain_text().strip()
@@ -23,9 +26,9 @@ async def handle_isaac_item(event: Event, args: Message = CommandArg()):
         return
     elif word.isdigit():
         num = int(word)
-        similar_list.append(find_item_by_id(num))
+        similar_list.append(item_object.find_item_by_id(num))
     else:
-        similar_list = find_items_by_name(word)
+        similar_list = item_object.find_items_by_name(word)
 
     if len(similar_list) == 0:
         await isaac_item.finish(Message("找不到对应的道具"))
@@ -33,8 +36,38 @@ async def handle_isaac_item(event: Event, args: Message = CommandArg()):
     
     if len(similar_list) == 1:
         item = similar_list[0]
-        await isaac_item.finish(MessageSegment.image(Path(f'/root/bot/isaac/tools/item_des/item_des_{item.id}.png')))
+        await isaac_item.finish(MessageSegment.image(Path(global_def.ITEM_DES_PATH_PREFIX + str(item.id) + global_def.PNG_SUFFIX)))
         return
 
-    create_image_with_list(similar_list)
-    await isaac_item.finish(MessageSegment.image(Path(VAGUE_SEARCH_RES_PATH)))
+    vague_search.create_image_with_list(similar_list, "ITEM", group_id)
+    await isaac_item.finish(MessageSegment.image(Path(global_def.VAGUE_SEARCH_RES_PATH_PREFIX + str(group_id) + global_def.PNG_SUFFIX)))
+
+
+@isaac_trinket.handle()
+async def handle_isaac_trinket(bot: Bot, event: Event, args: Message = CommandArg()):
+    group_id = event.group_id
+    if not group_management.accept_group_barrier(str(group_id)):
+        return
+    
+    word = args.extract_plain_text().strip()
+    similar_list = []
+
+    if len(word) == 0:
+        return
+    elif word.isdigit():
+        num = int(word)
+        similar_list.append(item_object.find_trinket_by_id(num))
+    else:
+        similar_list = item_object.find_trinkets_by_name(word)
+
+    if len(similar_list) == 0:
+        await isaac_trinket.finish(Message("找不到对应的饰品"))
+        return
+    
+    if len(similar_list) == 1:
+        trinket = similar_list[0]
+        await isaac_trinket.finish(MessageSegment.image(Path(global_def.TRINKET_DES_PATH_PREIFX + str(trinket.id) + global_def.PNG_SUFFIX)))
+        return
+
+    vague_search.create_image_with_list(similar_list, "TRINKET", group_id)
+    await isaac_trinket.finish(MessageSegment.image(Path(global_def.VAGUE_SEARCH_RES_PATH_PREFIX + str(group_id) + global_def.PNG_SUFFIX)))
