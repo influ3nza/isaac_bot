@@ -1,0 +1,487 @@
+{
+    "1": {
+        "id": 1,
+        "name": "0-愚者",
+        "description": "旅程开始之地"
+    },
+    "2": {
+        "id": 2,
+        "name": "I-魔术师",
+        "description": "愿您弹无虚发"
+    },
+    "3": {
+        "id": 3,
+        "name": "II-女祭司",
+        "description": "妈妈在注视你"
+    },
+    "4": {
+        "id": 4,
+        "name": "III-皇后",
+        "description": "愿您怒中生力"
+    },
+    "5": {
+        "id": 5,
+        "name": "IV-皇帝",
+        "description": "挑战我！"
+    },
+    "6": {
+        "id": 6,
+        "name": "V-教皇",
+        "description": "为迷途者祷告两次"
+    },
+    "7": {
+        "id": 7,
+        "name": "VI-恋人",
+        "description": "愿您健康繁盛"
+    },
+    "8": {
+        "id": 8,
+        "name": "VII-战车",
+        "description": "愿您所向披靡"
+    },
+    "9": {
+        "id": 9,
+        "name": "VIII-正义",
+        "description": "愿您仕途平稳"
+    },
+    "10": {
+        "id": 10,
+        "name": "IX-隐者",
+        "description": "愿您看破红尘"
+    },
+    "11": {
+        "id": 11,
+        "name": "X-命运之轮",
+        "description": "转动命运之轮"
+    },
+    "12": {
+        "id": 12,
+        "name": "XI-力量",
+        "description": "愿您力中唤怒"
+    },
+    "13": {
+        "id": 13,
+        "name": "XII-倒吊人",
+        "description": "愿您寻得启示"
+    },
+    "14": {
+        "id": 14,
+        "name": "XIII-死亡",
+        "description": "毁灭忤逆尔者"
+    },
+    "15": {
+        "id": 15,
+        "name": "XIV-节制",
+        "description": "愿您内心纯洁"
+    },
+    "16": {
+        "id": 16,
+        "name": "XV-恶魔",
+        "description": "沉迷黑暗之力"
+    },
+    "17": {
+        "id": 17,
+        "name": "XVI-塔",
+        "description": "毁灭带来创造"
+    },
+    "18": {
+        "id": 18,
+        "name": "XVII-星星",
+        "description": "愿你心想事成"
+    },
+    "19": {
+        "id": 19,
+        "name": "XVIII-月亮",
+        "description": "愿你失而复得"
+    },
+    "20": {
+        "id": 20,
+        "name": "XIX-太阳",
+        "description": "愿光赐你启示"
+    },
+    "21": {
+        "id": 21,
+        "name": "XX-审判",
+        "description": "为避审而审判"
+    },
+    "22": {
+        "id": 22,
+        "name": "XXI-世界",
+        "description": "睁眼洞察世界"
+    },
+    "23": {
+        "id": 23,
+        "name": "梅花2",
+        "description": "物品翻倍"
+    },
+    "24": {
+        "id": 24,
+        "name": "方片2",
+        "description": "物品翻倍"
+    },
+    "25": {
+        "id": 25,
+        "name": "黑桃2",
+        "description": "物品翻倍"
+    },
+    "26": {
+        "id": 26,
+        "name": "红桃2",
+        "description": "物品翻倍"
+    },
+    "27": {
+        "id": 27,
+        "name": "梅花A",
+        "description": "全部转换"
+    },
+    "28": {
+        "id": 28,
+        "name": "方片A",
+        "description": "全部转换"
+    },
+    "29": {
+        "id": 29,
+        "name": "黑桃A",
+        "description": "全部转换"
+    },
+    "30": {
+        "id": 30,
+        "name": "红桃A",
+        "description": "全部转换"
+    },
+    "31": {
+        "id": 31,
+        "name": "鬼牌",
+        "description": "???"
+    },
+    "32": {
+        "id": 32,
+        "name": "冰雹符文",
+        "description": "摧毁"
+    },
+    "33": {
+        "id": 33,
+        "name": "收获符文",
+        "description": "丰收"
+    },
+    "34": {
+        "id": 34,
+        "name": "马骑符文",
+        "description": "通道"
+    },
+    "35": {
+        "id": 35,
+        "name": "朝夕符文",
+        "description": "纯洁"
+    },
+    "36": {
+        "id": 36,
+        "name": "诸神符文",
+        "description": "视野"
+    },
+    "37": {
+        "id": 37,
+        "name": "签筒符文",
+        "description": "改变"
+    },
+    "38": {
+        "id": 38,
+        "name": "桦木符文",
+        "description": "伙伴"
+    },
+    "39": {
+        "id": 39,
+        "name": "保护符文",
+        "description": "抵御"
+    },
+    "40": {
+        "id": 40,
+        "name": "空白符文",
+        "description": "???"
+    },
+    "41": {
+        "id": 41,
+        "name": "黑符文",
+        "description": "虚空"
+    },
+    "42": {
+        "id": 42,
+        "name": "混沌卡",
+        "description": "???"
+    },
+    "43": {
+        "id": 43,
+        "name": "信用卡",
+        "description": "记在账上！"
+    },
+    "44": {
+        "id": 44,
+        "name": "规则卡",
+        "description": "???"
+    },
+    "45": {
+        "id": 45,
+        "name": "反人类卡",
+        "description": "好臭…"
+    },
+    "46": {
+        "id": 46,
+        "name": "自杀之王",
+        "description": "真结局？"
+    },
+    "47": {
+        "id": 47,
+        "name": "免费保释卡",
+        "description": "芝麻开门"
+    },
+    "48": {
+        "id": 48,
+        "name": "？卡",
+        "description": "双倍主动"
+    },
+    "49": {
+        "id": 49,
+        "name": "骰子碎片",
+        "description": "六面骰+二十面骰"
+    },
+    "50": {
+        "id": 50,
+        "name": "紧急联系电话",
+        "description": "从天而降的帮助"
+    },
+    "51": {
+        "id": 51,
+        "name": "神圣卡",
+        "description": "你感到受保护"
+    },
+    "52": {
+        "id": 52,
+        "name": "变巨术",
+        "description": "变得巨大！"
+    },
+    "53": {
+        "id": 53,
+        "name": "先祖召唤",
+        "description": "抽3张卡牌"
+    },
+    "54": {
+        "id": 54,
+        "name": "时空漫步",
+        "description": "品味这一刻"
+    },
+    "55": {
+        "id": 55,
+        "name": "符文碎片",
+        "description": "它仍在微微发光"
+    },
+    "56": {
+        "id": 56,
+        "name": "0-愚者？",
+        "description": "一切从零开始"
+    },
+    "57": {
+        "id": 57,
+        "name": "I-魔术师？",
+        "description": "愿您免受侵害"
+    },
+    "58": {
+        "id": 58,
+        "name": "II-女祭司？",
+        "description": "快跑"
+    },
+    "59": {
+        "id": 59,
+        "name": "III-皇后？",
+        "description": "愿您爱中受护"
+    },
+    "60": {
+        "id": 60,
+        "name": "IV-皇帝？",
+        "description": "愿您险境得胜"
+    },
+    "61": {
+        "id": 61,
+        "name": "V-教皇？",
+        "description": "为被遗忘者祷告两次"
+    },
+    "62": {
+        "id": 62,
+        "name": "VI-恋人？",
+        "description": "愿您心碎如麻"
+    },
+    "63": {
+        "id": 63,
+        "name": "VII-战车？",
+        "description": "愿您固若金汤"
+    },
+    "64": {
+        "id": 64,
+        "name": "VIII-正义？",
+        "description": "愿您罪有应得"
+    },
+    "65": {
+        "id": 65,
+        "name": "IX-隐者？",
+        "description": "愿您坦然释怀"
+    },
+    "66": {
+        "id": 66,
+        "name": "X-命运之轮？",
+        "description": "掷出宿命之骰"
+    },
+    "67": {
+        "id": 67,
+        "name": "XI-力量？",
+        "description": "愿您粉碎敌志"
+    },
+    "68": {
+        "id": 68,
+        "name": "XII-倒吊人？",
+        "description": "愿您贪得无厌"
+    },
+    "69": {
+        "id": 69,
+        "name": "XIII-死亡？",
+        "description": "愿死者得复生"
+    },
+    "70": {
+        "id": 70,
+        "name": "XIV-节制？",
+        "description": "愿您欲求得满"
+    },
+    "71": {
+        "id": 71,
+        "name": "XV-恶魔？",
+        "description": "沉浸仁慈之光"
+    },
+    "72": {
+        "id": 72,
+        "name": "XVI-塔？",
+        "description": "创造带来毁灭"
+    },
+    "73": {
+        "id": 73,
+        "name": "XVII-星星？",
+        "description": "愿您有失有得"
+    },
+    "74": {
+        "id": 74,
+        "name": "XVIII-月亮？",
+        "description": "愿您回眸过往"
+    },
+    "75": {
+        "id": 75,
+        "name": "XIX-太阳？",
+        "description": "愿黑暗吞噬你"
+    },
+    "76": {
+        "id": 76,
+        "name": "XX-审判？",
+        "description": "愿您救赎弱者"
+    },
+    "77": {
+        "id": 77,
+        "name": "XXI-世界？",
+        "description": "步入无尽深渊"
+    },
+    "78": {
+        "id": 78,
+        "name": "红钥匙碎片",
+        "description": "???"
+    },
+    "79": {
+        "id": 79,
+        "name": "红桃Q",
+        "description": "<3"
+    },
+    "80": {
+        "id": 80,
+        "name": "万用牌",
+        "description": "再来一次"
+    },
+    "81": {
+        "id": 81,
+        "name": "以撒的魂石",
+        "description": "重置…还是不重置"
+    },
+    "82": {
+        "id": 82,
+        "name": "抹大拉的魂石",
+        "description": "我要你的爱！"
+    },
+    "83": {
+        "id": 83,
+        "name": "该隐的魂石",
+        "description": "没什么开不了的"
+    },
+    "84": {
+        "id": 84,
+        "name": "犹大的魂石",
+        "description": "影遁背刺"
+    },
+    "85": {
+        "id": 85,
+        "name": "???的魂石",
+        "description": "生化战"
+    },
+    "86": {
+        "id": 86,
+        "name": "夏娃的魂石",
+        "description": "私家猎手"
+    },
+    "87": {
+        "id": 87,
+        "name": "参孙的魂石",
+        "description": "千人斩"
+    },
+    "88": {
+        "id": 88,
+        "name": "阿撒泻勒的魂石",
+        "description": "恶魔狂怒！"
+    },
+    "89": {
+        "id": 89,
+        "name": "拉撒路的魂石",
+        "description": "死后复生"
+    },
+    "90": {
+        "id": 90,
+        "name": "伊甸的魂石",
+        "description": "拥抱混沌"
+    },
+    "91": {
+        "id": 91,
+        "name": "游魂的魂石",
+        "description": "抛下你的肉身"
+    },
+    "92": {
+        "id": 92,
+        "name": "莉莉丝的魂石",
+        "description": "母性"
+    },
+    "93": {
+        "id": 93,
+        "name": "店主的魂石",
+        "description": "$$$"
+    },
+    "94": {
+        "id": 94,
+        "name": "亚玻伦的魂石",
+        "description": "灾难使者"
+    },
+    "95": {
+        "id": 95,
+        "name": "遗骸的魂石",
+        "description": "枯骨守护者"
+    },
+    "96": {
+        "id": 96,
+        "name": "伯大尼的魂石",
+        "description": "彼岸盟友"
+    },
+    "97": {
+        "id": 97,
+        "name": "雅各与以扫的魂石",
+        "description": "血缘羁绊"
+    }
+}
