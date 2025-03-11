@@ -14,11 +14,15 @@ poke: 戳一戳显示预言
 nickname: 使用/adn, /nickname <道具名/id>查看道具的所有昵称
 nickname: 使用/addadn, /addnickname <道具名/id> <昵称名>为道具添加昵称
 guess-sprite: 通过道具图片猜道具
+trinket: 支持查找饰品
+----v0.8----
 draw: 增加每日运势
+----v0.8.1----
+chore: 更新api-key
 ----TODO----
 chore: 添加内在孩童，独角兽的断角，灵魂枷锁三个道具的相关信息
 label: 使用/label c<道具名/id>查看道具的所有标签
 label: 使用/label <标签名>查看标签对应的道具，支持模糊查找标签名或标签id
 tmtrainer: 随机错误道具图片
-
 bug: 修复安慰奖具有幸运上升标签的错误
+chore: 项目结构调整
