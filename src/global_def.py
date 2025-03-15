@@ -30,7 +30,9 @@ TRINKET_SPRITE_PATH_PREFIX = "/root/bot/isaac/tools/trinket_sprite/trinket_sprit
 TRINKET_DES_PATH_PREIFX = "/root/bot/isaac/tools/trinket_des/trinket_des_"
 CARD_SPRITE_PATH_PREFIX = "/root/bot/isaac/tools/card_sprite/card_sprite_"
 
+# files that need to write frequently
 ADN_PENDING_PATH = "/root/bot/isaac/tools/adn_pending.json"
+GAME_RECORDS_PATH = "/root/bot/isaac/tools/game_records.json"
 
 PNG_SUFFIX = ".png"
 

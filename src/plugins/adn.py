@@ -9,7 +9,7 @@ from .. import item_object
 from .. import vague_search
 from .. import global_def
 from .. import group_management
-from .. import adn_utils
+from .. import file_utils
 
 add_adn = on_command("addadn", aliases={"addnickname", "添加昵称", "addalias"})
 show_adn = on_command("adn", aliases={"nickname", "alias", "昵称"})
@@ -82,7 +82,7 @@ async def add_adn_handle(bot: Bot, event: Event, args: Message = CommandArg()):
     
     if len(similar_list) == 1:
         item = similar_list[0]
-        adn_utils.add_pending_adn(item.name, new_adn)
+        file_utils.add_pending_adn(item.name, new_adn)
         await add_adn.finish("已添加进waiting list，记得戳电容让他更新。")
         return
 

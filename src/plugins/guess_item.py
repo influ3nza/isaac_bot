@@ -12,6 +12,7 @@ from .. import label_object
 from .. import global_def
 from .. import group_management
 from .. import adj_item
+from .. import file_utils
 
 from ..label_object import Label
 
@@ -188,7 +189,7 @@ async def handle_guess_item(bot: Bot, event: Event):
 
     status = group_management.group_guess_game.get(str(group_id))
     logger.info("should new: " + str(status))
-    await guess_item.finish(Message(f"以撒点子王！每隔一段时间就会放出该物品的一个提示。如果道具名长度大于2，除非回答准确绰号，否则只匹配至少长度为3的子串。\n发送quit停止。"))
+    await guess_item.finish(Message(f"以撒点子王！每隔一段时间就会放出该物品的一个提示。如果道具名长度大于2，除非回答准确绰号，否则只匹配至少长度为3的子串。\n不能回答\"妈妈的\"、\"嗝屁猫\"这三个字!!!\n支持英语大小写识别。\n发送quit停止。"))
 
 
 @guess_sprite.handle()
@@ -252,13 +253,26 @@ async def handle_make_guess(bot: Bot, event: Event):
     if len(word) == 0:
         return
     
+    if word == "妈妈的":
+        await make_guess.finish("你妈的")
+        return
+    
+    if word == "嗝屁猫":
+        await make_guess.finish("哈基米")
+        return
+    
     msg = Message()
+    need_add_score = False
 
     if word.isdigit() and int(word) == game_start:
-        msg += MessageSegment.text("猜测正确！正确答案是")
+        msg += MessageSegment.at(event.user_id)
+        msg += MessageSegment.text("\n猜测正确！正确答案是")
+        need_add_score = True
 
     elif game_start in [item.id for item in item_object.find_items_by_name_strict(word)]:
-        msg += MessageSegment.text("猜测正确！正确答案是")
+        msg += MessageSegment.at(event.user_id)
+        msg += MessageSegment.text("\n猜测正确！正确答案是")
+        need_add_score = True
 
     elif word == "quit":
         msg += MessageSegment.text("结束，正确答案是")
@@ -268,6 +282,9 @@ async def handle_make_guess(bot: Bot, event: Event):
 
     msg += MessageSegment.image(Path(f"/root/bot/isaac/tools/item_sprite/item_sprite_{game_start}.png"))
     msg += MessageSegment.text(item_object.find_item_by_id(game_start).name)
+
+    if need_add_score:
+        msg += MessageSegment.text(f"\nTA已经猜对{file_utils.guess_add_score(str(event.user_id))}次了！")
     
     if status["timeout_task"]:
         status["timeout_task"].cancel()

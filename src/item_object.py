@@ -43,34 +43,42 @@ def find_item_by_id(item_id: int) -> Item:
 def find_items_by_name(search_string: str) -> list:
     load_items()
 
+    search_string = search_string.casefold()
     matched_items = []
+
     for item in global_def.all_items.values():
-        if search_string in item.name and not item in matched_items:
+        if search_string in item.name.casefold() and item not in matched_items:
             matched_items.append(item)
 
     for item in global_def.all_items.values():
         for alias in item.aliases:
-            if search_string in alias and not item in matched_items:
+            if search_string in alias.casefold() and item not in matched_items:
                 matched_items.append(item)
+
     return matched_items
+
 
 
 def find_items_by_name_strict(search_string: str) -> list:
     load_items()
 
+    search_string = search_string.casefold()
     matched_items = []
+
     for item in global_def.all_items.values():
         if len(item.name) > 2:
-            if len(search_string) > 2 and search_string in item.name and not item in matched_items:
+            if len(search_string) > 2 and search_string in item.name.casefold() and item not in matched_items:
                 matched_items.append(item)
         else:
-            if search_string in item.name and not item in matched_items:
+            if search_string in item.name.casefold() and item not in matched_items:
                 matched_items.append(item)
-    
+
     for item in global_def.all_items.values():
-        if search_string in item.aliases and not item in matched_items:
+        if search_string in (alias.casefold() for alias in item.aliases) and item not in matched_items:
             matched_items.append(item)
+
     return matched_items
+
 
 
 class Trinket:
