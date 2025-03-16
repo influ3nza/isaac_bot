@@ -1,9 +1,11 @@
 from openai import AsyncOpenAI
 import random
 
+from .secret import secrets
+
 aclient = AsyncOpenAI(
     base_url="https://api.deepseek.com/",
-    api_key="sk-?"
+    api_key=secrets.deepseek_api
 )
 
 async def amake_chat(prompt: str) -> str:

@@ -1357,7 +1357,8 @@
     "id":49,
     "name":"嗖-哒-呜！",
     "aliases":[
-      "大嘴"
+      "大嘴",
+      "嗖哒呜"
     ],
     "description":"哇啦啦啦啦！",
     "rarity":"2",
@@ -1493,7 +1494,7 @@
     "id":54,
     "name":"藏宝图",
     "aliases":[
-      "白底图",
+      "白地图",
       "全图"
     ],
     "description":"完全可视地图",
@@ -2559,7 +2560,9 @@
   "93":{
     "id":93,
     "name":"游戏掌机",
-    "aliases":[],
+    "aliases":[
+      "游戏机"
+    ],
     "description":"暂时型吃豆人",
     "rarity":"1",
     "charge":"4",
@@ -2742,7 +2745,8 @@
     "id":99,
     "name":"吉什宝宝",
     "aliases":[
-      "吉士宝宝"
+      "吉士宝宝",
+      "吉什"
     ],
     "description":"粘粘伙伴",
     "rarity":"1",
@@ -5689,7 +5693,8 @@
     "id":202,
     "name":"弥达斯之触",
     "aliases":[
-      "点金"
+      "点金",
+      "迈达斯"
     ],
     "description":"点金术",
     "rarity":"1",
@@ -5764,7 +5769,9 @@
   "205":{
     "id":205,
     "name":"锋利插头",
-    "aliases":[],
+    "aliases":[
+      "插头"
+    ],
     "description":"血偿充能",
     "rarity":"2",
     "charge":"-1",
@@ -6591,7 +6598,8 @@
     "name":"死神之触",
     "aliases":[
       "镰刀",
-      "穿透"
+      "穿透",
+      "死神镰刀"
     ],
     "description":"穿刺泪弹+伤害上升",
     "rarity":"3",
@@ -7333,7 +7341,9 @@
   "263":{
     "id":263,
     "name":"透明符文",
-    "aliases":[],
+    "aliases":[
+      "白符文"
+    ],
     "description":"符文复制",
     "rarity":"2",
     "charge":"4",
@@ -7750,7 +7760,9 @@
   "276":{
     "id":276,
     "name":"以撒的心脏",
-    "aliases":[],
+    "aliases":[
+      "心脏"
+    ],
     "description":"保护它",
     "rarity":"0",
     "charge":"-1",
@@ -8509,7 +8521,8 @@
     "id":306,
     "name":"人马座",
     "aliases":[
-      "穿透"
+      "穿透",
+      "射手座"
     ],
     "description":"穿刺泪弹+移速上升",
     "rarity":"3",
@@ -9017,7 +9030,9 @@
     "id":326,
     "name":"生命之息",
     "aliases":[
-      "浓痰"
+      "浓痰",
+      "痰",
+      "生命的气息"
     ],
     "description":"血偿无敌",
     "rarity":"1",
@@ -9783,7 +9798,9 @@
   "355":{
     "id":355,
     "name":"妈妈的珍珠项链",
-    "aliases":[],
+    "aliases":[
+      "妈妈的项链"
+    ],
     "description":"射程+运气上升",
     "rarity":"2",
     "charge":"-1",
@@ -9817,7 +9834,9 @@
   "356":{
     "id":356,
     "name":"车载电池",
-    "aliases":[],
+    "aliases":[
+      "车电池"
+    ],
     "description":"主动强化",
     "rarity":"3",
     "charge":"-1",
@@ -10355,7 +10374,9 @@
     "id":375,
     "name":"寄居骷髅帽",
     "aliases":[
-      "防爆"
+      "防爆",
+      "防爆帽",
+      "防爆头"
     ],
     "description":"爆炸抗性",
     "rarity":"3",
@@ -10739,7 +10760,8 @@
     "name":"撒拉弗",
     "aliases":[
       "天使宝",
-      "天使宝宝"
+      "天使宝宝",
+      "圣心宝"
     ],
     "description":"挚友",
     "rarity":"3",
@@ -12145,7 +12167,9 @@
     "id":443,
     "name":"苹果！",
     "aliases":[
-      "刀片"
+      "刀片",
+      "苹果!",
+      "苹果"
     ],
     "description":"糖里有刀？",
     "rarity":"3",
@@ -12337,7 +12361,9 @@
   "451":{
     "id":451,
     "name":"塔罗牌桌布",
-    "aliases":[],
+    "aliases":[
+      "桌布"
+    ],
     "description":"我看到了未来",
     "rarity":"2",
     "charge":"-1",
@@ -12686,7 +12712,9 @@
   "465":{
     "id":465,
     "name":"模拟摇杆",
-    "aliases":[],
+    "aliases":[
+      "摇杆"
+    ],
     "description":"360度射击！",
     "rarity":"2",
     "charge":"-1",
@@ -12820,7 +12848,8 @@
     "name":"死寂宝宝",
     "aliases":[
       "hush宝",
-      "hush宝宝"
+      "hush宝宝",
+      "凹凸宝"
     ],
     "description":"迷你死寂！",
     "rarity":"0",
@@ -13213,7 +13242,9 @@
   "487":{
     "id":487,
     "name":"土豆削皮刀",
-    "aliases":[],
+    "aliases":[
+      "刮肉刀"
+    ],
     "description":"一磅肉…",
     "rarity":"2",
     "charge":"0",
@@ -14107,7 +14138,9 @@
   "523":{
     "id":523,
     "name":"搬家盒",
-    "aliases":[],
+    "aliases":[
+      "打包盒"
+    ],
     "description":"打包再拆包",
     "rarity":"1",
     "charge":"4",
@@ -14408,7 +14441,9 @@
   "535":{
     "id":535,
     "name":"毛毯",
-    "aliases":[],
+    "aliases":[
+      "毯子"
+    ],
     "description":"你感到安全",
     "rarity":"2",
     "charge":"-1",
@@ -15302,7 +15337,9 @@
   "571":{
     "id":571,
     "name":"孤儿的袜子",
-    "aliases":[],
+    "aliases":[
+      "袜子"
+    ],
     "description":"移速上升+脚底耐刺",
     "rarity":"2",
     "charge":"-1",
@@ -15322,7 +15359,9 @@
   "572":{
     "id":572,
     "name":"玄秘魔眼",
-    "aliases":[],
+    "aliases":[
+      "魔眼"
+    ],
     "description":"伤害上升+射程上升+可控泪弹",
     "rarity":"3",
     "charge":"-1",
@@ -17051,7 +17090,9 @@
   "643":{
     "id":643,
     "name":"终末天启",
-    "aliases":[],
+    "aliases":[
+      "天启"
+    ],
     "description":"唤醒你的信仰",
     "rarity":"4",
     "charge":"-1",
@@ -17304,7 +17345,9 @@
   "653":{
     "id":653,
     "name":"驱魔护符",
-    "aliases":[],
+    "aliases":[
+      "护符"
+    ],
     "description":"恶灵退散！",
     "rarity":"1",
     "charge":"0",
@@ -17902,7 +17945,8 @@
     "name":"水土不服症",
     "aliases":[
       "硫磺史",
-      "硫磺屎"
+      "硫磺屎",
+      "硫磺翔"
     ],
     "description":"哦不…",
     "rarity":"2",
@@ -18004,7 +18048,9 @@
     "id":684,
     "name":"饥饿幽魂",
     "aliases":[
-      "红魂"
+      "红魂",
+      "红鬼",
+      "红灵"
     ],
     "description":"嗜血成性",
     "rarity":"2",
@@ -18078,7 +18124,9 @@
   "687":{
     "id":687,
     "name":"寻友护符",
-    "aliases":[],
+    "aliases":[
+      "手拉手"
+    ],
     "description":"好朋友一辈子！",
     "rarity":"2",
     "charge":"4",
@@ -18165,7 +18213,8 @@
     "id":691,
     "name":"十字圣球",
     "aliases":[
-      "注定伟大"
+      "注定伟大",
+      "宝珠"
     ],
     "description":"注定伟大",
     "rarity":"4",
@@ -18353,7 +18402,8 @@
     "id":698,
     "name":"作孽双子",
     "aliases":[
-      "双生宝"
+      "双生宝",
+      "双子"
     ],
     "description":"麻烦成双！",
     "rarity":"4",
@@ -18566,7 +18616,9 @@
   "706":{
     "id":706,
     "name":"无底坑",
-    "aliases":[],
+    "aliases":[
+      "红虚空"
+    ],
     "description":"涌出深渊",
     "rarity":"3",
     "charge":"4",
@@ -18711,7 +18763,9 @@
   "712":{
     "id":712,
     "name":"所罗门魔典",
-    "aliases":[],
+    "aliases":[
+      "所罗门之书"
+    ],
     "description":"物品召唤术",
     "rarity":"3",
     "charge":"6",

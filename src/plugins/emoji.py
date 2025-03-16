@@ -3,7 +3,6 @@ from nonebot.adapters.onebot.v11 import Bot, Event
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, Message, MessageSegment
 from pathlib import Path
 
-from ..global_def import accept_group_id
 from .. import group_management
 
 # 定义一个消息处理器

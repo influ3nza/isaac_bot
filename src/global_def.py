@@ -38,10 +38,6 @@ PNG_SUFFIX = ".png"
 
 UNDER_CONSTRUCTION_HINT_PATH = "/root/bot/isaac/tools/item_sprite/item_sprite_481.png"
 
-accept_group_id = ["1017021098", "1025271474"]
-test_group_id = ["1017021098"]
-administrator = ["2805815088"]
-
 bible_reply_prefix = "bible_"
 who_asked_prefix = "who_asked_"
 debug3_prefix = "debug3_"

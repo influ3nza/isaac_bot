@@ -21,6 +21,10 @@ draw: 增加每日运势
 chore: 更新api-key (源代码中的key已失效)
 ----v0.8.3----
 guess: 增加新标签
+----v0.9----
+guess: 防沉迷
+chore: 加入secret保护敏感信息
+refresh: 每日4点刷新次数
 ----TODO----
 chore: 添加内在孩童，独角兽的断角，灵魂枷锁三个道具的相关信息
 label: 使用/label c<道具名/id>查看道具的所有标签

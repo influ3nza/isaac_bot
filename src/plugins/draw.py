@@ -47,9 +47,6 @@ async def handle_card(bot: Bot, event: Event, args: Message = CommandArg()):
     #     return
     
     word = args.extract_plain_text().strip()
-    if word == "clear" and str(event.user_id) in global_def.administrator:
-        group_management.draw_card_record = {}
-        return
     
     cnt = group_management.draw_card_record.get(str(event.user_id))
     if cnt:

@@ -1,4 +1,5 @@
 import json
+from nonebot import logger
 
 from . import global_def
 
@@ -29,6 +30,7 @@ def load_labels():
         return
 
     global_def.all_labels = load_label_from_json(global_def.LABEL_JSON_PATH)
+    logger.info("正在加载配置")
     global_def.all_labels_loaded = True
 
 

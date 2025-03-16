@@ -1,6 +1,6 @@
 import json
 
-with open("item.json", "r", encoding="utf-8") as file:
+with open("./item.json", "r", encoding="utf-8") as file:
     items = json.load(file)
 
 with open("adn_pending.json", "r", encoding="utf-8") as file:
@@ -17,7 +17,7 @@ for key, value in adns.items():
             if new_adn not in aliases:
                 aliases.append(new_adn)
 
-with open("item.json", "w", encoding="utf-8") as file:
+with open("./item.json", "w", encoding="utf-8") as file:
     json.dump(items, file, ensure_ascii=False, indent=2, separators=(",", ":"))
 
 adns = {}
