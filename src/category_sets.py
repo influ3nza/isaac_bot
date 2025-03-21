@@ -20,7 +20,7 @@ isaac_flavor_text = {
         "text": "知识就是力量。"
     },
     "dataminer": {
-        "id": [489],
+        "id": [481],
         "text": "XCSmDBRlDB5pNLmuhdGyg3WtECNlgLq2EBVlDBcagrZlfB4lDXGegBKxgHGtg3AeEXGagnGmNLmugLb="
     },
     "spun": {

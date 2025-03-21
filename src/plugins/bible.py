@@ -3,9 +3,10 @@ from nonebot.adapters.onebot.v11 import Bot, Event
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, Message, MessageSegment
 from pathlib import Path
 import random
+from datetime import datetime
 
 from .. import global_def
-from .. import category_sets
+from .. import vague_search
 from .. import group_management
 from .. import reply_object
 
@@ -23,11 +24,37 @@ async def handle_bible(bot: Bot, event: Event):
     
     word = event.get_message().extract_plain_text().strip()
 
+    if len(word) == 0:
+        return
+
     if word == "/bible":
         msg = Message()
         msg += MessageSegment.image(Path(f"/root/bot/isaac/tools/emoji/bible.jpg"))
         await reply_bible.finish(msg)
         return
+    
+    if word == "/dr":
+        msg = Message()
+        msg += MessageSegment.image(Path(global_def.DR_PATH))
+        msg += MessageSegment.text(datetime.now().strftime("%Y年%m月%d日\n"))
+        msg += MessageSegment.text("今天的dr(版本为忏悔+)：\n")
+
+        date = datetime.now().strftime("%m-%d")
+        vague_search.dr_parse_image(int(date.split('-')[0]), int(date.split('-')[1]), global_def.DR_CROP_PATH)
+
+        msg += MessageSegment.image(global_def.DR_TODAY_PATH)
+        await reply_bible.finish(msg)
+        return
+    
+    if word[0] != "a":
+        word = word[1:]
+        if word.isdigit():
+            i_word = int(word)
+            if i_word == 1:
+                msg = Message()
+                msg += MessageSegment.image(Path(f"/root/bot/isaac/tools/other/emoji_{i_word}.png"))
+                await reply_bible.finish(msg)
+                return
 
     if word.isdigit() or word == "-1":
         s_key = global_def.bible_reply_prefix + word

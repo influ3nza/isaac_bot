@@ -74,7 +74,8 @@ async def handle_card(bot: Bot, event: Event, args: Message = CommandArg()):
     msg += MessageSegment.image(Path(global_def.CARD_SPRITE_PATH_PREFIX + str(card.id) + global_def.PNG_SUFFIX))
     msg += MessageSegment.text(card.name + " <<" + card.description + ">>\n")
 
-    prompt = f"扮演神明说一段话，基于塔罗牌：[{card.name}]进行占卜（如果方括号中包含问号，则代表对应卡牌的逆位卡牌，需包含消极旨意）。不超过25字，不少于12字。回答中不能出现卡牌名以及逆位等相关信息，回答需对仗、押韵、威严、神秘、智慧、文学性强、不得加粗。"
+    wcnt = random.randint(10, 32)
+    prompt = f"把塔罗牌：[{card.name}]的主要寓意总结为若干个关键词。以其中的随机一个关键词为主题写一段文字（如果方括号中包含问号，则代表对应卡牌的逆位卡牌，需包含消极旨意）。回答中不能出现卡牌名、逆位、关键词、寓意等任何无关的信息。回答需对仗、押韵、文学性强、不得加粗。回答只能包括那段文字，且不超过{wcnt}字。"
     response = await deepseek.amake_chat(prompt) 
     msg += MessageSegment.text(response)
 

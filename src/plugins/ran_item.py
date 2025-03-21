@@ -8,13 +8,22 @@ from ..global_def import missing_item_number
 from ..category_sets import isaac_flavor_text
 from ..item_object import find_item_by_id
 from .. import group_management
+from .. import global_def
 
 rand_item = on_command("今天吃什么", aliases={"早饭吃什么", "午饭吃什么", "晚饭吃什么", "下午茶吃什么", "夜宵吃什么", "早上吃什么", "中午吃什么", "晚上吃什么", "下午吃什么"})
 
 @rand_item.handle()
-async def handle_rand_item(event: Event):
-    if not group_management.accept_group_barrier(str(event.group_id)):
+async def handle_rand_item(bot: Bot, event: Event):
+    group_id = event.group_id
+    if not group_management.accept_group_barrier(str(group_id)):
         return
+    
+    # if not group_management.test_barrier(str(group_id)):
+    #     msg = Message()
+    #     msg += MessageSegment.text("还在修。")
+    #     msg += MessageSegment.image(Path(global_def.UNDER_CONSTRUCTION_HINT_PATH))
+    #     await bot.send_msg(group_id=group_id, message=msg)
+    #     return
     
     rand = random.randint(1, 732)
     while (rand in missing_item_number):

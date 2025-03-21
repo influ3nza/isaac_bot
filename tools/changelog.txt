@@ -25,10 +25,18 @@ guess: 增加新标签
 guess: 防沉迷
 chore: 加入secret保护敏感信息
 refresh: 每日4点刷新次数
+----v0.10----
+guess_effect: 猜测人物获得了哪些道具
+bug: 修复安慰奖具有幸运上升标签的错误
+chore: 项目结构调整
+tmtrainer: 随机错误道具图片(未完成)
+refresh: 管理员refresh指令
+draw: 更好的prompt
+dr: 每日挑战查询
 ----TODO----
 chore: 添加内在孩童，独角兽的断角，灵魂枷锁三个道具的相关信息
 label: 使用/label c<道具名/id>查看道具的所有标签
 label: 使用/label <标签名>查看标签对应的道具，支持模糊查找标签名或标签id
-tmtrainer: 随机错误道具图片
-bug: 修复安慰奖具有幸运上升标签的错误
+guess_effect: 大量图片需要修改
 chore: 项目结构调整
+bug: 修复黑圈具有伤害上升标签的错误，移除泪弹上抛速度标签
